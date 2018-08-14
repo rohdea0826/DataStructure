@@ -57,10 +57,18 @@ void PopFront(pSeqList ps)
 
 void showSeqList(SeqList p)
 {
+	if (p.sz == 0) return;
 	int i;
 	for (i = 0; i < p.sz; i++)
 	{
 		printf("%d ", p.data[i]);
 	}
 	printf("\n");
+}
+
+void DestroySeqList(pSeqList p)
+{
+	free(p->data);
+	p->sz = 0;
+	p->capacity = 0;
 }
