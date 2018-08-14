@@ -22,6 +22,7 @@ void PushBack(pSeqList ps, DataType d);
 void PopBack(pSeqList ps);
 void PushFront(pSeqList ps, DataType d);
 void PopFront(pSeqList ps);
+//ÉÏÃæµÄOK
 void InsertList(pSeqList ps, int pos, DataType d);
 void Remove(pSeqList ps, DataType d);
 void RemoveAll(pSeqList ps, DataType d);
