@@ -20,4 +20,6 @@ void InitSeqList(pSeqList ps);
 void checkCapacity(pSeqList ps);
 void PushBack(pSeqList ps, DataType d);
 void PopBack(pSeqList ps);
+void PushFront(pSeqList ps, DataType d);
+void PopFront(pSeqList ps);
 void showSeqList(SeqList p);

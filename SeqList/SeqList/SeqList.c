@@ -25,6 +25,36 @@ void PushBack(pSeqList ps, DataType d)
 
 }
 
+void PopBack(pSeqList ps)
+{
+	if (ps->sz == 0) return;
+	ps->sz--;
+}
+
+void PushFront(pSeqList ps, DataType d)
+{
+	assert(ps != NULL);
+	int i;
+	checkCapacity(ps);
+	for (i = ps->sz++; i > 0; i--)
+	{
+		ps->data[i] = ps->data[i - 1];
+	}
+	ps->data[0] = d;
+}
+
+void PopFront(pSeqList ps)
+{
+	assert(ps);
+	int i;
+	for (i = 0; i < ps->sz; i++)
+	{
+		ps->data[i] = ps->data[i + 1];
+	}
+	ps->sz--;
+}
+
+
 void showSeqList(SeqList p)
 {
 	int i;
