@@ -1,5 +1,4 @@
-#ifndef __LINKL_H__
-#define __LINKL_H__
+#pragma once
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -30,5 +29,3 @@ void Erase(Node **pplist, Node *pos);
 void Remove(Node **pplist, DataType d);
 void RemoveAll(Node **pplist, DataType d);
 void PrintTailToHead(Node* plist);
-
-#endif
