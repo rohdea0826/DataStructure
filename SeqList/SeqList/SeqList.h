@@ -22,13 +22,13 @@ void PushBack(pSeqList ps, DataType d);
 void PopBack(pSeqList ps);
 void PushFront(pSeqList ps, DataType d);
 void PopFront(pSeqList ps);
-//上面的OK
 void InsertList(pSeqList ps, int pos, DataType d);
 void Remove(pSeqList ps, DataType d);
 void RemoveAll(pSeqList ps, DataType d);
 int  FindList(pSeqList ps, DataType d);
 void BubbleSort(pSeqList ps);
 void SelectSort(pSeqList ps);
+//上面的OK
 int  BinarySearch(pSeqList ps, DataType d);
 void showSeqList(SeqList p);
 void DestroySeqList(pSeqList p);

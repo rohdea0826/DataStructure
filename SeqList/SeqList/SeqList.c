@@ -71,12 +71,7 @@ void InsertList(pSeqList ps, int pos, DataType d)
 void Remove(pSeqList ps, DataType d)
 {
 	assert(ps != NULL);
-	if (ps->sz = 1)
-	{
-		if (ps->data[0] == d)
-			PopBack(ps);
-		return;
-	}
+	if (ps->sz == 0) return;
 	int i = 0;
 	while (ps->data[i] != d)
 	{
@@ -128,6 +123,7 @@ int FindList(pSeqList ps, DataType d)
 void BubbleSort(pSeqList ps)
 {
 	assert(ps);
+	if (ps->sz == 0) return;
 	int i = 0;
 	int j = 0;
 	DataType tmp;
@@ -148,6 +144,67 @@ void BubbleSort(pSeqList ps)
 	}
 }
 
+static void swap(DataType *left, DataType *right)
+{
+	DataType tmp = *left;
+	*left = *right;
+	*right = tmp;
+}
+
+void SelectSort(pSeqList ps)
+{
+	assert(ps);
+	if (ps->sz == 0) return;
+	int left = 0, right = 0;
+	int i = 0;
+	int j = 0;
+	DataType min = ps->data[0];
+	DataType max = ps->data[0];
+	for (i = 0; i < ps->sz / 2; i++)
+	{
+		min = ps->data[i];
+		max = ps->data[i];
+		for (j = i; j < ps->sz - i; j++)
+		{
+			if (ps->data[j] <= min)
+			{
+				left = j;
+				min = ps->data[left];
+			}
+			if (ps->data[j] >= max)
+			{
+				right = j;
+				max = ps->data[right];
+			}
+		}
+		swap(ps->data + i, ps->data + left);
+		if (right == i) right = left;
+		swap(ps->data + ps->sz - i - 1, ps->data + right);
+	}
+}
+
+
+int BinarySearch(pSeqList ps, DataType d)
+{
+	int left = 0;
+	int right = ps->sz - 1;
+	int mid;
+	while (left <= right)
+	{
+		mid = left + (right - left) / 2;
+		if (d < ps->data[mid])
+		{
+			right = mid - 1;
+		}
+		else if (d > ps->data[mid])
+		{
+			left = mid + 1;
+		}
+		else
+			return mid;
+	}
+	return -1;
+}
 
 void showSeqList(SeqList p)
 {
