@@ -57,6 +57,7 @@ void PopFront(pSeqList ps)
 	ps->sz--;
 }
 
+//在pos位置处插入元素，pos及后面的元素后移
 void InsertList(pSeqList ps, int pos, DataType d)
 {
 	assert(ps);
@@ -71,6 +72,7 @@ void InsertList(pSeqList ps, int pos, DataType d)
 	PushBack(ps, tmp);
 }
 
+//删除第一个值为d的元素
 void Remove(pSeqList ps, DataType d)
 {
 	assert(ps != NULL);
@@ -88,6 +90,7 @@ void Remove(pSeqList ps, DataType d)
 	ps->sz--;
 }
 
+//删除所有值为d的元素
 void RemoveAll(pSeqList ps, DataType d)
 {
 	assert(ps);
@@ -111,6 +114,7 @@ void RemoveAll(pSeqList ps, DataType d)
 	}
 }
 
+//查找并返回第一个值为d的元素的下标
 int FindList(pSeqList ps, DataType d)
 {
 	assert(ps);
@@ -123,6 +127,7 @@ int FindList(pSeqList ps, DataType d)
 	return -1;
 }
 
+//冒泡排序
 void BubbleSort(pSeqList ps)
 {
 	assert(ps);
@@ -154,6 +159,10 @@ static void swap(DataType *left, DataType *right)
 	*right = tmp;
 }
 
+//选择排序，由于采用同时查找最大及最小值
+//因此有个坑，第一个元素为最大值时，
+//由于先交换了最小值，而后便会把交换过的最小值换到最右侧
+//所以要加以判断
 void SelectSort(pSeqList ps)
 {
 	assert(ps);
@@ -186,6 +195,7 @@ void SelectSort(pSeqList ps)
 	}
 }
 
+//二分查找
 int BinarySearch(pSeqList ps, DataType d)
 {
 	int left = 0;
