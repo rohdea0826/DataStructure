@@ -1,5 +1,7 @@
 #include "SeqList.h"
 
+//动态创建堆上的空间，
+//一般不会初始化容量为1，这里只是为了方便测试
 void InitSeqList(pSeqList ps)
 {
 	ps->data = (DataType *)calloc(1,sizeof(DataType));
@@ -7,12 +9,14 @@ void InitSeqList(pSeqList ps)
 	ps->capacity = 1;
 }
 
+//检测容量，若不足则容量加倍
 void checkCapacity(pSeqList ps)
 {
 	assert(ps);
 	if (ps->sz + 1 > ps->capacity)
 	{
-		ps->data = (DataType *)realloc(ps->data, ps->capacity*sizeof(DataType) + sizeof(DataType));
+		ps->data = (DataType *)realloc(ps->data, ps->capacity*sizeof(DataType) 
+			+ sizeof(DataType)*ps->capacity);
 		ps->capacity++;
 	}
 }
@@ -22,7 +26,6 @@ void PushBack(pSeqList ps, DataType d)
 	assert(ps != NULL);
 	checkCapacity(ps);
 	ps->data[ps->sz++] = d;
-
 }
 
 void PopBack(pSeqList ps)
@@ -182,7 +185,6 @@ void SelectSort(pSeqList ps)
 		swap(ps->data + ps->sz - i - 1, ps->data + right);
 	}
 }
-
 
 int BinarySearch(pSeqList ps, DataType d)
 {

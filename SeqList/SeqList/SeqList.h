@@ -28,7 +28,6 @@ void RemoveAll(pSeqList ps, DataType d);
 int  FindList(pSeqList ps, DataType d);
 void BubbleSort(pSeqList ps);
 void SelectSort(pSeqList ps);
-//ÉÏÃæµÄOK
 int  BinarySearch(pSeqList ps, DataType d);
 void showSeqList(SeqList p);
 void DestroySeqList(pSeqList p);
