@@ -37,7 +37,6 @@ Node* BuyNode(DataType d)
 
 void PushBack(Node ** pplist, DataType d)
 {
-	
 	Node *newNode = BuyNode(d);
 	assert(pplist != NULL);
 	//无节点
@@ -54,7 +53,6 @@ void PushBack(Node ** pplist, DataType d)
 		}
 		cur->next = newNode;
 	}
-	
 }
 
 void PopBack(Node ** pplist)
@@ -183,15 +181,13 @@ void Erase(Node ** pplist, Node * pos)
 void Remove(Node ** pplist, DataType d)
 {
 	assert(pplist);
-
+	//这里可以使用Erase函数完成，较为简便
 	//if (*pplist == NULL) return;
 	//Erase(pplist, Find(*pplist, d));
-
 	Node *cur = NULL;
 	Node *prev = NULL;
 	if (*pplist == NULL) return;
 	cur = *pplist;
-	
 	while (cur)
 	{
 		if (cur->data == d)
