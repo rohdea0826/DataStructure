@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "Stack.h"
+#include "question.h"
 
 void test()
 {
@@ -20,9 +21,12 @@ void test()
 	DestroyStack(&s);
 }
 
+
+
 int main()
 {
-	test();
+	TestValid();
+	//test();
 	system("pause");
 	return 0;
 }
