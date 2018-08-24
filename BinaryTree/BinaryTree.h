@@ -7,9 +7,9 @@ typedef int DataType;
 typedef struct BinaryTree
 {
 	DataType data;
-	struct BinaryTree *LChild,*RChild
+	struct BinaryTree *LChild, *RChild;
 }BTree,*pBTree;
 
-void InitBTree(pBTree pt);
-void CreateBTree(pBTree pt);
-int FindBTree(BTree t);
+pBTree CreateNode(DataType d);
+pBTree CreateBTree(DataType preOrder[], int size, int *UsedSize);
+void proOrder(pBTree t);
