@@ -12,4 +12,5 @@ typedef struct BinaryTree
 
 pBTree CreateNode(DataType d);
 pBTree CreateBTree(DataType preOrder[], int size, int *UsedSize);
-void proOrder(pBTree t);
+void preOrder(pBTree t);
+void midOrder(pBTree t);

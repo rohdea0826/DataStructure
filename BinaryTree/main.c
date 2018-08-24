@@ -8,11 +8,14 @@ void test()
 	int size = 8;
 	int UsedSize = 0;
 	pBTree root = CreateBTree(VLR, size, &UsedSize);
-
+	preOrder(root);
+	printf("\n");
+	midOrder(root);
 }
 
 int main()
 {
 	test();
+	system("pause");
 	return 0;
 }

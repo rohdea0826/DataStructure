@@ -30,9 +30,24 @@ pBTree CreateBTree(DataType preOrder[], int size, int * UsedSize)
 	return root;
 }
 
-void proOrder(pBTree t)
+void preOrder(pBTree t)
 {
-	if (t->LChild == NULL) return;
-	
+	if (t == NULL) return;
+	else
+	{
+		printf("%d ", t->data);
+	}
+	preOrder(t->LChild);
+	preOrder(t->RChild);
+}
 
+void midOrder(pBTree t)
+{
+	preOrder(t->LChild);
+	if (t == NULL) return;
+	else
+	{
+		printf("%d ", t->data);
+	}
+	preOrder(t->RChild);
 }
