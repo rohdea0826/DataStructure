@@ -137,7 +137,6 @@ int BSTreeRemove(BSTreeNode **root, DataType key)
 				else
 					parent->left = cur->right;
 				free(cur);
-				return 1;
 			}
 			//找到的节点右子树为空
 			else if (cur->right == NULL)
@@ -149,7 +148,6 @@ int BSTreeRemove(BSTreeNode **root, DataType key)
 				else
 					parent->left = cur->left;
 				free(cur);
-				return 1;
 			}
 			//左右子树均不为空
 			else
@@ -162,19 +160,20 @@ int BSTreeRemove(BSTreeNode **root, DataType key)
 					delParent = del;
 					del = del->right;
 				}
+				//找到最大的首先将值替换过来
+				//然后考虑最大结点的左子树
+				cur->key = del->key;
+				//若左子树中最大值节点的父节点就是要删除的节点
+				//将其左子树交给要删除的节点
 				if (delParent == NULL)
-				{
-					cur->key = del->key;
 					cur->left = del->left;
-				}
-			
+				//否则将其交给父节点
 				else
-					cur->key = del->key;
+					delParent->right = del->left;
 				free(del);
-				return 1;
 			}
+			return 1;
 		}
-
 		parent = cur;
 		if (key < cur->key)
 			cur = cur->left;
@@ -185,25 +184,26 @@ int BSTreeRemove(BSTreeNode **root, DataType key)
 }
 
 //递归删除
+//判断基本和非递归一样，只是因为传递的是*root的地址，会有略微差异
 int BSTreeRemove_R(BSTreeNode **root, DataType key)
 {
 	BSTreeNode *del = *root;
+	//若树为空，返回失败
 	if ((*root) == NULL)
 		return -1;
+	//若在树中找到了值为key的节点，进入处理
 	if (key == (*root)->key)
 	{
+		//若找到的节点的左子树为空，将该节点指向其右子树
 		if ((*root)->left == NULL)
-		{
 			*root = (*root)->right;
-			free(del);
-			return 1;
-		}
+		//若找到的节点的右子树为空，将该节点指向其左子树
 		else if ((*root)->right == NULL)
-		{
 			*root = (*root)->left;
-			free(del);
-			return 1;
-		}
+		//当找到的节点的左右子树均不为空，
+		//找到其左子树中最大的值或右子树中最小的值并替换
+		//这样不会影响整棵树的大致结构
+		//判断方法同非递归删除
 		else
 		{
 			BSTreeNode *delparent = NULL;
@@ -215,26 +215,16 @@ int BSTreeRemove_R(BSTreeNode **root, DataType key)
 			}
 				(*root)->key = del->key;
 			if (delparent == NULL)
-			{
 				(*root)->left = del->left;
-			}
 			else
-			{
 				delparent->right = del->left;
-			}
-			free(del);
-			return 1;
 		}
-	}
-	if ((*root) == NULL)
+		free(del);
 		return 1;
+	}
 	if (key < (*root)->key)
-	{
 		return BSTreeRemove_R(&(*root)->left, key);
-	}
 	else
-	{
 		return BSTreeRemove_R(&(*root)->right, key);
-	}
 }
 
